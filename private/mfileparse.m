@@ -51,6 +51,7 @@ while 1
 	%- Synopsis line
 	if ~isempty(strmatch('function',tline))
 		s.synopsis = tline;
+        s.subroutine{end+1} = tline;
 		if ~isempty(strmatch('...',fliplr(tline)))
 			flagsynopcont = 1;
 			s.synopsis = deblank(s.synopsis(1:end-3));
