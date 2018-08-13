@@ -356,6 +356,15 @@ if ~options.load
 	for i=1:length(mfiles)
 		[mdirs{i}, names{i}] = fileparts(mfiles{i});
 		if isempty(mdirs{i}), mdirs{i} = '.'; end
+
+        namespace = split(mdirs{i}, '/');
+        for j=length(namespace):-1:1
+            if length(namespace{j}) > 0 && strcmp(namespace{j}(1), '+')
+                names{i} = [namespace{j}(2:end), '.', names{i}];
+            else
+                break
+            end
+        end
 	end
 
 	mdir = unique(mdirs);

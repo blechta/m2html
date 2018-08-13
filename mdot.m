@@ -49,13 +49,13 @@ if nargin == 2
 		n = find(hrefs(i,:) == 1);
 		m{i} = n;
 		for j=1:length(n)
-			fprintf(fid,['  ' names{i} ' -> ' names{n(j)} ';\n']);
+			fprintf(fid,['  "' names{i} '" -> "' names{n(j)} '";\n']);
 		end
 	end
 	%m = unique([m{:}]);
 	fprintf(fid,'\n');
 	for i=1:size(hrefs,1)
-		fprintf(fid,['  ' names{i} ' [URL="' ...
+		fprintf(fid,['  "' names{i} '" [URL="' ...
             fullurl(mdirs{i},[names{i} options.extension]) '"];\n']);
 	end
 else
@@ -65,18 +65,18 @@ else
 	end
 	n = find(hrefs(i,:) == 1);
 	for j=1:length(n)
-		fprintf(fid,['  ' names{i} ' -> ' names{n(j)} ';\n']);
+		fprintf(fid,['  "' names{i} '" -> "' names{n(j)} '";\n']);
 	end
 	m = find(hrefs(:,i) == 1);
 	for j=1:length(m)
 		if n(j) ~= i
-			fprintf(fid,['  ' names{m(j)} ' -> ' names{i} ';\n']);
+			fprintf(fid,['  "' names{m(j)} '" -> "' names{i} '";\n']);
 		end
 	end
 	n = unique([n(:)' m(:)']);
 	fprintf(fid,'\n');
 	for i=1:length(n)
-		fprintf(fid,['  ' names{n(i)} ' [URL="' fullurl(mdirs{i}, ...
+		fprintf(fid,['  "' names{n(i)} '" [URL="' fullurl(mdirs{i}, ...
             [names{n(i)} options.extension]) '"];\n']);
 	end
 end
